@@ -30,6 +30,8 @@ namespace LeoSat_Dashboard
         private Button bt_Disconnect;
         private Button bt_LiveData;
         private Button bt_Statistik;
+        private Button bt_liveView;
+        private Button bt_GPS;
 
         static ComboBox cb_PortSelect;
 
@@ -40,14 +42,17 @@ namespace LeoSat_Dashboard
 
         static private Label lb_Connected;
         static private Label lb_Copyright;
+
         static private Label lb_Temperature;
         static private Label lb_Humidity;
-        static private Label lb_Temperature2;
-        static private Label lb_Humidity2;
+        static private Label lb_Pressure;
+        static private Label lb_time;
+        static private Label lb_Altitude;
+        static private Label lb_Acceleration;
 
         //static private System.Windows.Forms.DataVisualization.Charting.Chart chart_temperautre_statistik;
 
-    public Form1()
+        public Form1()
         {
             InitializeComponent();
             InitializeForm();
@@ -157,10 +162,42 @@ namespace LeoSat_Dashboard
             bt_Statistik.ForeColor = Color.White;
             bt_Statistik.Font = new Font("Abadi", 18);
 
+            bt_GPS = new Button();
+            bt_GPS.Location = new Point(
+                0,
+                (int)(_screenHeight * 0.4));
+            bt_GPS.Click += new EventHandler(this.bt_GPS_Click);
+            bt_GPS.Size = new Size(
+                (int)(_screenWidth * 0.2),
+                (int)(_screenHeight * 0.1));
+            bt_GPS.FlatStyle = FlatStyle.Flat;
+            bt_GPS.FlatAppearance.BorderSize = 0;
+            bt_GPS.BackColor = Color.FromArgb(255, 20, 30, 48);
+            bt_GPS.Text = "GPS";
+            bt_GPS.ForeColor = Color.White;
+            bt_GPS.Font = new Font("Abadi", 18);
+
+            bt_liveView = new Button();
+            bt_liveView.Location = new Point(
+                0,
+                (int)(_screenHeight * 0.5));
+            bt_liveView.Click += new EventHandler(this.bt_liveView_Click);
+            bt_liveView.Size = new Size(
+                (int)(_screenWidth * 0.2),
+                (int)(_screenHeight * 0.1));
+            bt_liveView.FlatStyle = FlatStyle.Flat;
+            bt_liveView.FlatAppearance.BorderSize = 0;
+            bt_liveView.BackColor = Color.FromArgb(255, 20, 30, 48);
+            bt_liveView.Text = "Live View";
+            bt_liveView.ForeColor = Color.White;
+            bt_liveView.Font = new Font("Abadi", 18);
+
             Controls.Add(bt_Connect);
             Controls.Add(bt_Disconnect);
             Controls.Add(bt_LiveData);
             Controls.Add(bt_Statistik);
+            Controls.Add(bt_liveView);
+            Controls.Add(bt_GPS);
         }
         private void InitializeCombobox()
         {
@@ -197,71 +234,101 @@ namespace LeoSat_Dashboard
                 0,
                 (int)(_screenHeight * 0.94));
             lb_Copyright.Size = new Size(
-                (int)(_screenWidth * 0.078),
+                (int)(_screenWidth * 0.1),
                 (int)(_screenHeight * 0.035));
             lb_Copyright.BackColor = _colors[1];
-            lb_Copyright.Text = " " + (char)169 + " 2023";
+            lb_Copyright.Text = " " + (char)169 + " LeoSat, 2024";
             lb_Copyright.ForeColor = Color.White;
             lb_Copyright.Font = new Font("Abadi", 10);
+
+            lb_time = new Label();
+            lb_time.Location = new Point(
+                (int)(_screenWidth * 0.25),
+                (int)(_screenHeight * 0.05));
+            lb_time.Size = new Size(
+                (int)(_screenWidth * 0.2),
+                (int)(_screenHeight * 0.41));
+            lb_time.Text = "-";
+            lb_time.TextAlign = ContentAlignment.MiddleCenter;
+            lb_time.Font = new Font("Abadi", 40);
+            lb_time.BackColor = _colors[1];
+            lb_time.ForeColor = Color.White;
+
+            lb_Humidity = new Label();
+            lb_Humidity.Location = new Point(
+                (int)(_screenWidth * 0.5),
+                (int)(_screenHeight * 0.05));
+            lb_Humidity.Size = new Size(
+                (int)(_screenWidth * 0.2),
+                (int)(_screenHeight * 0.41));
+            lb_Humidity.Text = "-";
+            lb_Humidity.TextAlign = ContentAlignment.MiddleCenter;
+            lb_Humidity.Font = new Font("Abadi", 40);
+            lb_Humidity.BackColor = _colors[1];
+            lb_Humidity.ForeColor = Color.White;
+
+            lb_Pressure = new Label();
+            lb_Pressure.Location = new Point(
+                (int)(_screenWidth * 0.75),
+                (int)(_screenHeight * 0.05));
+            lb_Pressure.Size = new Size(
+                (int)(_screenWidth * 0.2),
+                (int)(_screenHeight * 0.41));
+            lb_Pressure.Text = "-";
+            lb_Pressure.TextAlign = ContentAlignment.MiddleCenter;
+            lb_Pressure.Font = new Font("Abadi", 40);
+            lb_Pressure.BackColor = _colors[1];
+            lb_Pressure.ForeColor = Color.White;
 
             lb_Temperature = new Label();
             lb_Temperature.Location = new Point(
                 (int)(_screenWidth * 0.25),
-                (int)(_screenHeight * 0.05));
+                (int)(_screenHeight * 0.51));
             lb_Temperature.Size = new Size(
-                (int)(_screenWidth * 0.325),
+                (int)(_screenWidth * 0.2),
                 (int)(_screenHeight * 0.41));
             lb_Temperature.Text = "-";
             lb_Temperature.TextAlign = ContentAlignment.MiddleCenter;
-            lb_Temperature.Font = new Font("Abadi", 70);
+            lb_Temperature.Font = new Font("Abadi", 40);
             lb_Temperature.BackColor = _colors[1];
             lb_Temperature.ForeColor = Color.White;
 
-            lb_Humidity = new Label();
-            lb_Humidity.Location = new Point(
-                (int)(_screenWidth * 0.625),
-                (int)(_screenHeight * 0.05));
-            lb_Humidity.Size = new Size(
-                (int)(_screenWidth * 0.325),
-                (int)(_screenHeight * 0.41));
-            lb_Humidity.Text = "-";
-            lb_Humidity.TextAlign = ContentAlignment.MiddleCenter;
-            lb_Humidity.Font = new Font("Abadi", 70);
-            lb_Humidity.BackColor = _colors[1];
-            lb_Humidity.ForeColor = Color.White;
 
-            lb_Temperature2 = new Label();
-            lb_Temperature2.Location = new Point(
-                (int)(_screenWidth * 0.25),
+            lb_Altitude = new Label();
+            lb_Altitude.Location = new Point(
+                (int)(_screenWidth * 0.5),
                 (int)(_screenHeight * 0.51));
-            lb_Temperature2.Size = new Size(
-                (int)(_screenWidth * 0.325),
+            lb_Altitude.Size = new Size(
+                (int)(_screenWidth * 0.2),
                 (int)(_screenHeight * 0.41));
-            lb_Temperature2.Text = "-";
-            lb_Temperature2.TextAlign = ContentAlignment.MiddleCenter;
-            lb_Temperature2.Font = new Font("Abadi", 70);
-            lb_Temperature2.BackColor = _colors[1];
-            lb_Temperature2.ForeColor = Color.White;
+            lb_Altitude.Text = "-";
+            lb_Altitude.TextAlign = ContentAlignment.MiddleCenter;
+            lb_Altitude.Font = new Font("Abadi", 40);
+            lb_Altitude.BackColor = _colors[1];
+            lb_Altitude.ForeColor = Color.White;
 
-            lb_Humidity2 = new Label();
-            lb_Humidity2.Location = new Point(
-                (int)(_screenWidth * 0.625),
+
+            lb_Acceleration = new Label();
+            lb_Acceleration.Location = new Point(
+                (int)(_screenWidth * 0.75),
                 (int)(_screenHeight * 0.51));
-            lb_Humidity2.Size = new Size(
-                (int)(_screenWidth * 0.325),
+            lb_Acceleration.Size = new Size(
+                (int)(_screenWidth * 0.2),
                 (int)(_screenHeight * 0.41));
-            lb_Humidity2.Text = "-";
-            lb_Humidity2.TextAlign = ContentAlignment.MiddleCenter;
-            lb_Humidity2.Font = new Font("Abadi", 70);
-            lb_Humidity2.BackColor = _colors[1];
-            lb_Humidity2.ForeColor = Color.White;
+            lb_Acceleration.Text = "-";
+            lb_Acceleration.TextAlign = ContentAlignment.MiddleCenter;
+            lb_Acceleration.Font = new Font("Abadi", 40);
+            lb_Acceleration.BackColor = _colors[1];
+            lb_Acceleration.ForeColor = Color.White;
 
             Controls.Add(lb_Connected);
             Controls.Add(lb_Copyright);
             Controls.Add(lb_Temperature);
             Controls.Add(lb_Humidity);
-            Controls.Add(lb_Temperature2);
-            Controls.Add(lb_Humidity2);
+            Controls.Add(lb_Pressure);
+            Controls.Add(lb_time);
+            Controls.Add(lb_Altitude);
+            Controls.Add(lb_Acceleration);
         }
         private void InitializePictureBox()
         {
@@ -360,9 +427,9 @@ namespace LeoSat_Dashboard
                 pb_IconConnectionStatus.Image = Image.FromFile(@"C:\Users\Jakob\OneDrive\4AHEL\Fst\Anbindung_mit_Mikrocontroller\Images\" + "Icon_disconnected" + ".png");
 
                 lb_Temperature.Text = "-" + "°C";
-                lb_Temperature2.Text = "-" + "°C";
+                lb_Pressure.Text = "-" + "°C";
                 lb_Humidity.Text = "-" + "°C";
-                lb_Humidity2.Text = "-" + "°C";
+                lb_time.Text = "-" + "°C";
 
                 chart_temperautre_statistik.Series[0].Points.Clear();
             }
@@ -378,20 +445,46 @@ namespace LeoSat_Dashboard
         private void bt_LiveData_Click(object sender, EventArgs e)
         {
             lb_Temperature.Visible = true;
-            lb_Temperature2.Visible = true;
+            lb_Pressure.Visible = true;
             lb_Humidity.Visible = true;
-            lb_Humidity2.Visible = true;
+            lb_time.Visible = true;
+            lb_Acceleration.Visible = true;
+            lb_Altitude.Visible = true; 
 
             chart_temperautre_statistik.Visible = false;
         }
         private void bt_Statistik_Click(object sender, EventArgs e)
         {
             lb_Temperature.Visible = false;
-            lb_Temperature2.Visible = false;
+            lb_Pressure.Visible = false;
             lb_Humidity.Visible = false;
-            lb_Humidity2.Visible = false;
+            lb_time.Visible = false;
+            lb_Altitude.Visible = false;
+            lb_Acceleration.Visible = false;
 
             chart_temperautre_statistik.Visible = true;
+        }
+        private void bt_liveView_Click(object sender, EventArgs e)
+        {
+            lb_Temperature.Visible = false;
+            lb_Pressure.Visible = false;
+            lb_Humidity.Visible = false;
+            lb_time.Visible = false;
+            lb_Altitude.Visible = false;
+            lb_Acceleration.Visible = false;
+
+            chart_temperautre_statistik.Visible = false;
+        }
+        private void bt_GPS_Click(object sender, EventArgs e)
+        {
+            lb_Temperature.Visible = false;
+            lb_Pressure.Visible = false;
+            lb_Humidity.Visible = false;
+            lb_time.Visible = false;
+            lb_Altitude.Visible = false;
+            lb_Acceleration.Visible = false;    
+
+            chart_temperautre_statistik.Visible = false;
         }
         private void SerialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
@@ -423,9 +516,11 @@ namespace LeoSat_Dashboard
             _receivedData = _receivedData.Replace("#", "");
 
             lb_Temperature.Text = _receivedData + "°C";
-            lb_Temperature2.Text = _receivedData + "°C";
+            lb_Pressure.Text = _receivedData + "°C";
             lb_Humidity.Text = _receivedData + "°C";
-            lb_Humidity2.Text = _receivedData + "°C";
+            lb_Altitude.Text = _receivedData + "m";
+            lb_Acceleration.Text = _receivedData + "m/s^2";
+            lb_time.Text = DateTime.Now.ToString("hh:mm:ss");
 
             chart_temperautre_statistik.Series[0].Points.AddXY(DateTime.Now.ToString("h:mm:ss tt"), _receivedData);
 
@@ -434,7 +529,8 @@ namespace LeoSat_Dashboard
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (_connected && _receivedData != "") DisplayData();
+            //if (_connected && _receivedData != "") DisplayData();
+            DisplayData();
           
         }
 
