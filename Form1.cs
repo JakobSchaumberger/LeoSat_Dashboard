@@ -19,9 +19,10 @@ namespace LeoSat_Dashboard
         static SerialPort _serialPort;
         private static System.Timers.Timer timer;
 
+        private static string ImagePath = "..\\..\\Images\\";
+
         private static int _screenHeight;
         private static int _screenWidth;
-        private static int _toggleReceiveLED;
 
         private static Boolean _connected;
         private static string _receivedData = "";
@@ -150,7 +151,7 @@ namespace LeoSat_Dashboard
                  (int)(_screenWidth * 0.14),
                  (int)(_screenHeight * 0.07));
             bt_Connect.Click += new EventHandler(this.bt_Connect_Click);
-            //bt_Connect.BackgroundImage = Image.FromFile(@"C:\Users\Jakob\OneDrive\4AHEL\Fst\Anbindung_mit_Mikrocontroller\Images\" + "Icon_bt_connect" + ".png"); ;
+            bt_Connect.BackgroundImage = Image.FromFile(@ImagePath + "Icon_bt_connect" + ".png");
             bt_Connect.Size = new Size(
                 (int)(_screenWidth * 0.02), 
                 (int)(_screenWidth * 0.02));
@@ -162,7 +163,7 @@ namespace LeoSat_Dashboard
                 (int)(_screenWidth * 0.17),
                 (int)(_screenHeight * 0.07));                     
             bt_Disconnect.Click += new EventHandler(this.bt_Disconnect_Click);
-            //bt_Disconnect.BackgroundImage = Image.FromFile(@"C:\Users\Jakob\OneDrive\4AHEL\Fst\Anbindung_mit_Mikrocontroller\Images\" + "Icon_bt_disconnect" + ".png"); ;
+            bt_Disconnect.BackgroundImage = Image.FromFile(@ImagePath + "Icon_bt_disconnect" + ".png");
             bt_Disconnect.Size = new Size(
                 (int)(_screenWidth * 0.02),
                 (int)(_screenWidth * 0.02));
@@ -370,7 +371,7 @@ namespace LeoSat_Dashboard
         private void InitializePictureBox()
         {
             pb_IconMicrocontroller = new PictureBox();
-            //pb_IconMicrocontroller.Image = Image.FromFile(@"C:\Users\Jakob\OneDrive\4AHEL\Fst\Anbindung_mit_Mikrocontroller\Images\" + "Microcontroller" + ".png");
+            pb_IconMicrocontroller.Image = Image.FromFile(@ImagePath + "Microcontroller" + ".png");
             pb_IconMicrocontroller.Location = new Point(
                 (int)(_screenWidth * 0.0125),
                 (int)(_screenHeight * 0.058));
@@ -381,7 +382,7 @@ namespace LeoSat_Dashboard
             pb_IconMicrocontroller.BackColor = _colors[1];
 
             pb_IconConnectionStatus = new PictureBox();
-            //pb_IconConnectionStatus.Image = Image.FromFile(@"C:\Users\Jakob\OneDrive\4AHEL\Fst\Anbindung_mit_Mikrocontroller\Images\" + "Icon_disconnected" + ".png");
+            pb_IconConnectionStatus.Image = Image.FromFile(@ImagePath + "Icon_disconnected" + ".png");
             pb_IconConnectionStatus.Location = new Point(
                 (int)(_screenWidth * 0.88),
                 (int)(_screenHeight * 0.015));
@@ -434,7 +435,7 @@ namespace LeoSat_Dashboard
                 _serialPort.Open();               
                 Console.WriteLine("Connected to Port {0}", _serialPort.PortName);
 
-                //pb_IconConnectionStatus.Image = Image.FromFile(@"C:\Users\Jakob\OneDrive\4AHEL\Fst\Anbindung_mit_Mikrocontroller\Images\" + "Icon_connected" + ".png");
+                pb_IconConnectionStatus.Image = Image.FromFile(@ImagePath + "Icon_connected" + ".png");
                 lb_Connected.Text = "Connected";
 
                 System.Threading.Thread.Sleep(1000);
@@ -461,7 +462,7 @@ namespace LeoSat_Dashboard
                 bt_Connect.Enabled = true;
 
                 lb_Connected.Text = "Disconnected";
-                //pb_IconConnectionStatus.Image = Image.FromFile(@"C:\Users\Jakob\OneDrive\4AHEL\Fst\Anbindung_mit_Mikrocontroller\Images\" + "Icon_disconnected" + ".png");
+                pb_IconConnectionStatus.Image = Image.FromFile(@ImagePath + "Icon_disconnected" + ".png");
 
                 lb_Temperature.Text = "-" + "°C";
                 lb_Pressure.Text = "-" + "°C";
@@ -575,12 +576,10 @@ namespace LeoSat_Dashboard
 
             try
             {
-                //nLat = double.Parse(Latitude);
                 nLat = Convert.ToDouble(Latitude, new System.Globalization.CultureInfo("en-US"));
                 nLong = Convert.ToDouble(Longitude, new System.Globalization.CultureInfo("en-US"));
 
                 gMapControl1.Position = new PointLatLng(nLat, nLong);
-                gMapControl1.Refresh();
             }
             catch(Exception e)
             {

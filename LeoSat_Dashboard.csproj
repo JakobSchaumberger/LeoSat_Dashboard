@@ -121,6 +121,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Icon_bt_connect.png" />
+    <Content Include="Images\icon_bt_disconnect.png" />
+    <Content Include="Images\Icon_connected.png" />
+    <Content Include="Images\Icon_disconnected.png" />
+    <Content Include="Images\Microcontroller.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
