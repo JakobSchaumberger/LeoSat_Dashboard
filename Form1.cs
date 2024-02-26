@@ -17,7 +17,7 @@ namespace LeoSat_Dashboard
         static SerialPort _serialPort;
         private static System.Timers.Timer timer;
 
-        private static string ImagePath = "C:\\Users\\jakob\\OneDrive\\LeoSat\\Software\\LeoSat_Dashboard\\Images\\";
+        private static string ImagePath = "..\\..\\Images\\";
 
         private static int _screenHeight;
         private static int _screenWidth;
