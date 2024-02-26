@@ -52,6 +52,22 @@ namespace LeoSat_Dashboard
         static private Label lb_Altitude;
         static private Label lb_Acceleration;
 
+        private String[] data;
+        private String timeOfFLight = "0";
+        private String Temp = "0";
+        private String Press = "0";
+        private String Latitude = "0";
+        private String Longitude = "0";
+        private String xAcc = "0";
+        private String yAcc = "0";
+        private String zAcc = "0";
+        private String Hum = "0";
+        private String Altitude = "0";
+        private String totalAcc = "0";
+        double nLat;
+        double nLong;
+
+
         //static private System.Windows.Forms.DataVisualization.Charting.Chart chart_temperautre_statistik;
 
         public Form1()
@@ -65,6 +81,7 @@ namespace LeoSat_Dashboard
             InitializePanel();
             InitializeSerialPort();
             InitializeChart();
+            InitializeMap();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -107,6 +124,24 @@ namespace LeoSat_Dashboard
             {
                 Console.WriteLine("{0}", s);
             }
+        }
+        private void InitializeMap()
+        {
+            gMapControl1.MapProvider = GoogleMapProvider.Instance;
+            //get tiles from server only
+            gMapControl1.Manager.Mode = AccessMode.ServerOnly;
+            //not use proxy
+            GMapProvider.WebProxy = null;
+            //center map on moscow
+            gMapControl1.Position = new PointLatLng(48.2793, 14.2528);
+
+            //zoom min/max; default both = 2
+            gMapControl1.MinZoom = 1;
+            gMapControl1.MaxZoom = 20;
+            //set zoom
+            gMapControl1.Zoom = 10;
+
+            gMapControl1.Visible = false;
         }
         private void InitializeButton()
         {
@@ -451,7 +486,8 @@ namespace LeoSat_Dashboard
             lb_Humidity.Visible = true;
             lb_time.Visible = true;
             lb_Acceleration.Visible = true;
-            lb_Altitude.Visible = true; 
+            lb_Altitude.Visible = true;
+            gMapControl1.Visible = false;
 
             chart_temperautre_statistik.Visible = false;
         }
@@ -463,6 +499,7 @@ namespace LeoSat_Dashboard
             lb_time.Visible = false;
             lb_Altitude.Visible = false;
             lb_Acceleration.Visible = false;
+            gMapControl1.Visible = false;
 
             chart_temperautre_statistik.Visible = true;
         }
@@ -474,6 +511,7 @@ namespace LeoSat_Dashboard
             lb_time.Visible = false;
             lb_Altitude.Visible = false;
             lb_Acceleration.Visible = false;
+            gMapControl1.Visible = false;
 
             chart_temperautre_statistik.Visible = false;
         }
@@ -484,55 +522,75 @@ namespace LeoSat_Dashboard
             lb_Humidity.Visible = false;
             lb_time.Visible = false;
             lb_Altitude.Visible = false;
-            lb_Acceleration.Visible = false;    
+            lb_Acceleration.Visible = false;
+            gMapControl1.Visible = true;
 
             chart_temperautre_statistik.Visible = false;
         }
         private void SerialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            try
-            {
-                _receivedData = _serialPort.ReadLine();
-                //System.Threading.Thread.Sleep(500);
-
-                _toggleReceiveLED = _toggleReceiveLED ^ 0x01;
-
-                _serialPort.Write(new byte[] { 6, (byte)_toggleReceiveLED }, 0, 2);
-            }          
-            catch(System.IO.IOException)
-            {
-
-            }
-            catch (System.InvalidOperationException)
-            {
-
-            }
+           _receivedData = _serialPort.ReadLine();
         }
 
         private void DisplayData()
         {
-            _receivedData = _receivedData.Replace(" ", "");
-            _receivedData = _receivedData.Replace("\n", "");
-            _receivedData = _receivedData.Replace("\r", "");
-            _receivedData = _receivedData.Replace("@", "");
-            _receivedData = _receivedData.Replace("#", "");
+            float nxAcc;
+            float nyAcc;
+            float nzAcc;
 
-            lb_Temperature.Text = _receivedData + "°C";
-            lb_Pressure.Text = _receivedData + "bar";
-            lb_Humidity.Text = _receivedData + "°C";
-            lb_Altitude.Text = _receivedData + "m";
-            lb_Acceleration.Text = _receivedData + "m/s^2";
-            lb_time.Text = DateTime.Now.ToString("hh:mm:ss");
+            data = _receivedData.Split(',');
+            try
+            {
+                timeOfFLight = data[0];
+                Temp = data[2];
+                Hum = data[3];
+                Press = data[4];
+                xAcc = data[9];
+                //nxAcc = float.Parse(xAcc);
+                yAcc = data[10];
+                //nyAcc = float.Parse(yAcc);
+                zAcc = data[11];
+                //nzAcc = float.Parse(zAcc);
 
-            chart_temperautre_statistik.Series[0].Points.AddXY(DateTime.Now.ToString("h:mm:ss tt"), _receivedData);
+                //double sqrtTotalAcc = Math.Sqrt(nxAcc * nyAcc * nzAcc);
+                //totalAcc = sqrtTotalAcc.ToString();
 
-            Console.WriteLine(_receivedData);            
+                Altitude = data[12];
+                Latitude = data[13];
+                Longitude = data[14];
+
+                lb_Temperature.Text = Temp + "°C";
+                lb_Pressure.Text = Press + "mbar";
+                lb_Humidity.Text = Hum;
+                lb_Altitude.Text = Altitude + "m";
+                lb_Acceleration.Text = 0 + "m/s^2";
+                lb_time.Text = timeOfFLight;
+
+                chart_temperautre_statistik.Series[0].Points.AddXY(DateTime.Now.ToString("h:mm:ss tt"), Temp);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+            try
+            {
+                //nLat = double.Parse(Latitude);
+                nLat = Convert.ToDouble(Latitude, new System.Globalization.CultureInfo("en-US"));
+                nLong = Convert.ToDouble(Longitude, new System.Globalization.CultureInfo("en-US"));
+
+                gMapControl1.Position = new PointLatLng(nLat, nLong);
+                gMapControl1.Refresh();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //if (_connected && _receivedData != "") DisplayData();
-            DisplayData();
+            if (_connected && _receivedData != "") DisplayData();
           
         }
 
