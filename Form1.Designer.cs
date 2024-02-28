@@ -52,7 +52,7 @@ namespace LeoSat_Dashboard
             legend3.Name = "Legend1";
             this.chart_temperautre_statistik.Legends.Add(legend3);
             this.chart_temperautre_statistik.Location = new System.Drawing.Point(0, 0);
-            this.chart_temperautre_statistik.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chart_temperautre_statistik.Margin = new System.Windows.Forms.Padding(4);
             this.chart_temperautre_statistik.Name = "chart_temperautre_statistik";
             this.chart_temperautre_statistik.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             series3.ChartArea = "ChartArea1";
@@ -71,7 +71,7 @@ namespace LeoSat_Dashboard
             this.gMapControl1.GrayScaleMode = false;
             this.gMapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gMapControl1.LevelsKeepInMemory = 5;
-            this.gMapControl1.Location = new System.Drawing.Point(1081, 286);
+            this.gMapControl1.Location = new System.Drawing.Point(996, 332);
             this.gMapControl1.MarkersEnabled = true;
             this.gMapControl1.MaxZoom = 2;
             this.gMapControl1.MinZoom = 2;
@@ -85,7 +85,7 @@ namespace LeoSat_Dashboard
             this.gMapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gMapControl1.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gMapControl1.ShowTileGridLines = false;
-            this.gMapControl1.Size = new System.Drawing.Size(1873, 1182);
+            this.gMapControl1.Size = new System.Drawing.Size(1492, 1206);
             this.gMapControl1.TabIndex = 1;
             this.gMapControl1.Zoom = 0D;
             // 
@@ -93,10 +93,10 @@ namespace LeoSat_Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(3256, 1654);
+            this.ClientSize = new System.Drawing.Size(2500, 1634);
             this.Controls.Add(this.gMapControl1);
             this.Controls.Add(this.chart_temperautre_statistik);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
