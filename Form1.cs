@@ -163,7 +163,7 @@ namespace LeoSat_Dashboard
                 (int)(_screenWidth * 0.17),
                 (int)(_screenHeight * 0.07));                     
             bt_Disconnect.Click += new EventHandler(this.bt_Disconnect_Click);
-
+            bt_Disconnect.BackgroundImage = Image.FromFile(@ImagePath + "Icon_bt_disconnect" + ".png");
             bt_Disconnect.Size = new Size(
                 (int)(_screenWidth * 0.02),
                 (int)(_screenWidth * 0.02));
