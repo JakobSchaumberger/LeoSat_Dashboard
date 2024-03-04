@@ -14,7 +14,7 @@ using GMap.NET;
 
 namespace LeoSat_Dashboard
 {
-    public partial class Form1 : Form
+    public partial class LeoSat_Dashboard : Form
     {
         static SerialPort _serialPort;
         private static System.Timers.Timer timer;
@@ -71,7 +71,7 @@ namespace LeoSat_Dashboard
 
         //static private System.Windows.Forms.DataVisualization.Charting.Chart chart_temperautre_statistik;
 
-        public Form1()
+        public LeoSat_Dashboard()
         {
             InitializeComponent();
             InitializeForm();
@@ -429,7 +429,7 @@ namespace LeoSat_Dashboard
             try
             {
                 _serialPort.PortName = cb_PortSelect.Text;
-                _serialPort.BaudRate = 9600;
+                _serialPort.BaudRate = 115200;
                 _serialPort.DtrEnable = true;
 
                 _serialPort.Open();               
@@ -443,7 +443,6 @@ namespace LeoSat_Dashboard
 
                 _connected = true;
                 bt_Connect.Enabled = false;
-                
             }
             catch
             {
@@ -531,6 +530,7 @@ namespace LeoSat_Dashboard
         private void SerialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
            _receivedData = _serialPort.ReadLine();
+            Console.WriteLine(_receivedData);
         }
 
         private void DisplayData()
@@ -539,18 +539,23 @@ namespace LeoSat_Dashboard
             float nyAcc;
             float nzAcc;
 
+            _receivedData = _receivedData.Replace("'", "");
+            _receivedData = _receivedData.Replace("[", "");
+            _receivedData = _receivedData.Replace("NaN", "0");
+
             data = _receivedData.Split(',');
+
             try
             {
                 timeOfFLight = data[0];
-                Temp = data[2];
-                Hum = data[3];
-                Press = data[4];
-                xAcc = data[9];
-                //nxAcc = float.Parse(xAcc);
-                yAcc = data[10];
-                //nyAcc = float.Parse(yAcc);
-                zAcc = data[11];
+                Temp         = data[2];
+                Hum          = data[3];
+                Press        = data[4];
+                xAcc         = data[9];
+                //nxAcc      = float.Parse(xAcc);
+                yAcc         = data[10];
+                //nyAcc      = float.Parse(yAcc);
+                zAcc         = data[11];
                 //nzAcc = float.Parse(zAcc);
 
                 //double sqrtTotalAcc = Math.Sqrt(nxAcc * nyAcc * nzAcc);
@@ -581,6 +586,10 @@ namespace LeoSat_Dashboard
 
                 gMapControl1.Position = new PointLatLng(nLat, nLong);
             }
+            catch(System.OverflowException)
+            {
+                Console.WriteLine("NaN Error");
+            }
             catch(Exception e)
             {
                 Console.WriteLine(e.ToString());
@@ -589,8 +598,7 @@ namespace LeoSat_Dashboard
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (_connected && _receivedData != "") DisplayData();
-          
+            if (_connected && _receivedData != "") DisplayData();       
         }
 
         private void chart_temperautre_statistik_Click(object sender, EventArgs e)
