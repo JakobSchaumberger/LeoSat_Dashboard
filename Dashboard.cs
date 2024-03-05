@@ -36,9 +36,9 @@ namespace LeoSat_Dashboard
 
         public string[] ToStringArray()
         {
-            string[] str = new string[15];
+            string[] str = new string[20];
 
-            for(int i = 0; i < str.Length; i++)
+            for(int i = 0; i < data.Length; i++)
             {
                 str[i] = data[i];
             }

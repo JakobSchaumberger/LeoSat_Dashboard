@@ -9,13 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LeoSat_Dashboard
 {
-    public partial class Form_GPS : Form
+    public partial class Form_GPS : Form, IObserver<Dashboard>
     {
+        private Model model;
+        private IDisposable unsubscriber;
+
         public Form_GPS()
         {
+            InitializeComponent();
+            //InitializeMap();
+        }
+        public Form_GPS(Model _model)
+        {
+            this.model = _model;
+            model.Subscribe(this);
+
             InitializeComponent();
             InitializeMap();
         }
@@ -24,7 +36,6 @@ namespace LeoSat_Dashboard
         {
             this.ControlBox = false;
         }
-
         private void InitializeMap()
         {
             gMapControl1.MapProvider = GoogleMapProvider.Instance;
@@ -41,17 +52,43 @@ namespace LeoSat_Dashboard
             //set zoom
             gMapControl1.Zoom = 10;
         }
-
-        private void timer_RefreshDisplay_Tick(object sender, EventArgs e)
+        public void OnNext(Dashboard recaivedData)
         {
+            try
+            {
+                string[] data = recaivedData.ToStringArray();
 
+                string Latitude = data[13];
+                string Longitude = data[14];
+
+                double nLat = Convert.ToDouble(Latitude, new System.Globalization.CultureInfo("en-US"));
+                double nLong = Convert.ToDouble(Longitude, new System.Globalization.CultureInfo("en-US"));
+
+                this.Invoke((MethodInvoker)delegate
+                {
+                    label1.Text = "" + nLat + nLong;
+                    gMapControl1.Position = new PointLatLng(nLat, nLong);
+                    Refresh();
+                });
+            }
+            catch (System.FormatException)
+            {
+                Console.WriteLine("Wrong Format of GPS Coordinates");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
         }
-        public void OnNext(Dashboard data)
-        {
-            string Latitude = data[13];
-            string Longitude = data[14]; ;
 
-            Refresh();
+        public void OnError(Exception error)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnCompleted()
+        {
+            throw new NotImplementedException();
         }
     }
 }

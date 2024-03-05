@@ -30,7 +30,6 @@ namespace LeoSat_Dashboard
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.bt_Menu = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -40,20 +39,14 @@ namespace LeoSat_Dashboard
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.bt_LiveData = new System.Windows.Forms.Button();
-            this.bt_GPS = new System.Windows.Forms.Button();
             this.bt_Statistics = new System.Windows.Forms.Button();
+            this.bt_GPS = new System.Windows.Forms.Button();
             this.menuTransistion = new System.Windows.Forms.Timer(this.components);
             this.menuContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bt_Menu)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 10;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // menuContainer
             // 
@@ -129,6 +122,7 @@ namespace LeoSat_Dashboard
             this.bt_Connect.Text = "button2";
             this.bt_Connect.UseVisualStyleBackColor = true;
             this.bt_Connect.UseWaitCursor = true;
+            this.bt_Connect.Click += new System.EventHandler(this.bt_Connect_Click);
             // 
             // button3
             // 
@@ -179,6 +173,25 @@ namespace LeoSat_Dashboard
             this.bt_LiveData.UseWaitCursor = true;
             this.bt_LiveData.Click += new System.EventHandler(this.bt_LiveData_Click);
             // 
+            // bt_Statistics
+            // 
+            this.bt_Statistics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(48)))));
+            this.bt_Statistics.FlatAppearance.BorderSize = 0;
+            this.bt_Statistics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_Statistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_Statistics.ForeColor = System.Drawing.Color.White;
+            this.bt_Statistics.Location = new System.Drawing.Point(3, 310);
+            this.bt_Statistics.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.bt_Statistics.Name = "bt_Statistics";
+            this.bt_Statistics.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.bt_Statistics.Size = new System.Drawing.Size(247, 60);
+            this.bt_Statistics.TabIndex = 16;
+            this.bt_Statistics.Text = "Statistics";
+            this.bt_Statistics.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_Statistics.UseVisualStyleBackColor = false;
+            this.bt_Statistics.UseWaitCursor = true;
+            this.bt_Statistics.Click += new System.EventHandler(this.bt_Statistics_Click);
+            // 
             // bt_GPS
             // 
             this.bt_GPS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(48)))));
@@ -199,25 +212,6 @@ namespace LeoSat_Dashboard
             this.bt_GPS.UseWaitCursor = true;
             this.bt_GPS.Click += new System.EventHandler(this.bt_GPS_Click);
             // 
-            // bt_Statistics
-            // 
-            this.bt_Statistics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(48)))));
-            this.bt_Statistics.FlatAppearance.BorderSize = 0;
-            this.bt_Statistics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_Statistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_Statistics.ForeColor = System.Drawing.Color.White;
-            this.bt_Statistics.Location = new System.Drawing.Point(3, 310);
-            this.bt_Statistics.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.bt_Statistics.Name = "bt_Statistics";
-            this.bt_Statistics.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.bt_Statistics.Size = new System.Drawing.Size(247, 60);
-            this.bt_Statistics.TabIndex = 16;
-            this.bt_Statistics.Text = "Statistics";
-            this.bt_Statistics.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_Statistics.UseVisualStyleBackColor = false;
-            this.bt_Statistics.UseWaitCursor = true;
-            this.bt_Statistics.Click += new System.EventHandler(this.bt_Statistics_Click);
-            // 
             // menuTransistion
             // 
             this.menuTransistion.Enabled = true;
@@ -230,12 +224,12 @@ namespace LeoSat_Dashboard
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1115, 585);
             this.Controls.Add(this.menuContainer);
+            this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LeoSat_Dashboard";
             this.Text = "LeoSat | Dashboard";
-            this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bt_Menu)).EndInit();
@@ -246,8 +240,6 @@ namespace LeoSat_Dashboard
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.FlowLayoutPanel menuContainer;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button bt_LiveData;

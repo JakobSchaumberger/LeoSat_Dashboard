@@ -55,7 +55,7 @@ namespace LeoSat_Dashboard
             model = new Model();
             model.Subscribe(this);
             InitializeComponent();       
-            //InitializeSerialPort();
+            InitializeSerialPort();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -65,7 +65,6 @@ namespace LeoSat_Dashboard
                 cb_PortSelect.Items.Add(s);
             }
         }
-
         // -----------------------------------------------------------------------------------------------------------
         // Initialize Form-Elements
         // -----------------------------------------------------------------------------------------------------------
@@ -103,28 +102,6 @@ namespace LeoSat_Dashboard
         // ----------------------------------------------------------------------------------------------------------
         // Event handling
         // ----------------------------------------------------------------------------------------------------------
-        private void bt_Connect_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                _serialPort.PortName = cb_PortSelect.Text;
-                _serialPort.BaudRate = 115200;
-                _serialPort.DtrEnable = true;
-
-                _serialPort.Open();               
-                Console.WriteLine("Connected to Port {0}", _serialPort.PortName);
-
-                //pb_IconConnectionStatus.Image = Image.FromFile(@ImagePath + "Icon_connected" + ".png");
-                //lb_Connected.Text = "Connected";
-
-                _connected = true;
-                bt_Connect.Enabled = false;
-            }
-            catch
-            {
-                Console.WriteLine("Port not available");
-            }
-        }
         private void bt_Disconnect_Click(object sender, EventArgs e)
         {
             try
@@ -156,7 +133,7 @@ namespace LeoSat_Dashboard
         {
            _receivedData = _serialPort.ReadLine();
             model.DataReceived(_receivedData);
-            Console.WriteLine(_receivedData);
+            //Console.WriteLine(_receivedData);
         }
 
         private void DisplayData(Dashboard receivedData)
@@ -166,6 +143,13 @@ namespace LeoSat_Dashboard
             float nzAcc;
 
             string[] data = receivedData.ToStringArray();
+
+            /*foreach (string str in data) {
+                Console.Write(str);
+                Console.Write(" ");
+            }
+            Console.WriteLine();*/
+            
 
             try
             {
@@ -220,13 +204,13 @@ namespace LeoSat_Dashboard
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (_connected && _receivedData != "") DisplayData();       
+            //if (_connected && _receivedData != "") DisplayData();       
         }
 
         public void OnNext(Dashboard data)
         {
             DisplayData(data);
-            Refresh();
+            //Refresh();
         }
 
         bool menuExpand = false;
@@ -282,7 +266,7 @@ namespace LeoSat_Dashboard
         {
             if (F_GPS == null)
             {
-                F_GPS = new Form_GPS();
+                F_GPS = new Form_GPS(model);
                 F_GPS.FormClosed += FGPS_FormClosed;
                 F_GPS.MdiParent = this;
                 F_GPS.Dock = DockStyle.Fill;
@@ -326,6 +310,30 @@ namespace LeoSat_Dashboard
         public void OnCompleted()
         {
             throw new NotImplementedException();
+        }
+
+        private void bt_Connect_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Button connect");
+            try
+            {
+                _serialPort.PortName = cb_PortSelect.Text;
+                _serialPort.BaudRate = 115200;
+                _serialPort.DtrEnable = true;
+
+                _serialPort.Open();
+                Console.WriteLine("Connected to Port {0}", _serialPort.PortName);
+
+                //pb_IconConnectionStatus.Image = Image.FromFile(@ImagePath + "Icon_connected" + ".png");
+                //lb_Connected.Text = "Connected";
+
+                _connected = true;
+                bt_Connect.Enabled = false;
+            }
+            catch
+            {
+                Console.WriteLine("Port not available");
+            }
         }
     }
 }
