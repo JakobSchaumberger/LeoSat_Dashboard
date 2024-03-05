@@ -9,12 +9,13 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Anbindung_mit_Mikrocontroller</RootNamespace>
     <AssemblyName>Anbindung_mit_Mikrocontroller</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,8 +55,12 @@
     <Reference Include="GMap.NET.WindowsPresentation, Version=2.1.7.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <HintPath>packages\GMap.NET.WinPresentation.2.1.7\lib\net472\GMap.NET.WindowsPresentation.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ReaLTaiizor, Version=3.8.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReaLTaiizor.3.8.0.1\lib\net48\ReaLTaiizor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -72,6 +77,7 @@
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>packages\System.Data.SQLite.Linq.1.0.115.5\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Design" />
     <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
@@ -87,16 +93,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Dashboard.cs" />
+    <Compile Include="Form_GPS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Form_GPS.Designer.cs">
+      <DependentUpon>Form_GPS.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Statistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Statistics.Designer.cs">
+      <DependentUpon>Form_Statistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LeoSat_Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LeoSat_Dashboard.Designer.cs">
+      <DependentUpon>LeoSat_Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_LiveData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_LiveData.Designer.cs">
+      <DependentUpon>Form_LiveData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Form_GPS.resx">
+      <DependentUpon>Form_GPS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_LiveData.resx">
+      <DependentUpon>Form_LiveData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Statistics.resx">
+      <DependentUpon>Form_Statistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeoSat_Dashboard.resx">
+      <DependentUpon>LeoSat_Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -106,6 +141,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -127,6 +163,7 @@
     <Content Include="Images\Icon_connected.png" />
     <Content Include="Images\Icon_disconnected.png" />
     <Content Include="Images\Microcontroller.png" />
+    <None Include="Resources\kisspng-hamburger-button-computer-icons-menu-5afa4b5d99b094.90076586152635273362951.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
