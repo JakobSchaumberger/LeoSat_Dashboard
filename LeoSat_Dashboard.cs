@@ -56,6 +56,11 @@ namespace LeoSat_Dashboard
             model.Subscribe(this);
             InitializeComponent();       
             InitializeSerialPort();
+
+            F_Statistics = new Form_Statistics(model);
+            F_Statistics.FormClosed += FGPS_FormClosed;
+            F_Statistics.MdiParent = this;
+            F_Statistics.Dock = DockStyle.Fill;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -142,17 +147,18 @@ namespace LeoSat_Dashboard
             float nyAcc;
             float nzAcc;
 
-            string[] data = receivedData.ToStringArray();
+            
 
             /*foreach (string str in data) {
                 Console.Write(str);
                 Console.Write(" ");
             }
-            Console.WriteLine();*/
-            
+            Console.WriteLine();*/      
 
             try
             {
+                string[] data = receivedData.ToStringArray();
+
                 timeOfFLight = data[0];
                 Temp         = data[2];
                 Hum          = data[3];
@@ -179,6 +185,10 @@ namespace LeoSat_Dashboard
                 lb_time.Text = timeOfFLight;*/
 
                 //chart_temperautre_statistik.Series[0].Points.AddXY(DateTime.Now.ToString("h:mm:ss tt"), Temp);
+            }
+            catch (System.NullReferenceException)
+            {
+                Console.WriteLine("NullReferenceException");
             }
             catch(Exception e)
             {
@@ -295,6 +305,7 @@ namespace LeoSat_Dashboard
             else
             {
                 F_Statistics.Activate();
+                F_Statistics.Show();
             }
         }
         private void FStatistics_FormClosed(object sender, FormClosedEventArgs e)

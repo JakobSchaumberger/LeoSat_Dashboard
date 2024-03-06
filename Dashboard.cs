@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,6 +25,7 @@ namespace LeoSat_Dashboard
         public Dashboard(string receivedData)                   //Konstruktor
         {
             ProcessData(receivedData);
+            SaveData(receivedData);
         }
         private void ProcessData(string receivedData)
         {
@@ -33,17 +36,32 @@ namespace LeoSat_Dashboard
 
             data = receivedData.Split(',');
         }
+        private void SaveData(string receivedData)
+        {
+            string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            using (StreamWriter writer = new StreamWriter(@FilePath + "\\SensorData.txt", append:true))
+            {
+                writer.WriteLine(receivedData);
+            }
+        }
 
         public string[] ToStringArray()
         {
-            string[] str = new string[20];
-
-            for(int i = 0; i < data.Length; i++)
+            try
             {
-                str[i] = data[i];
-            }
+                string[] str = new string[20];
 
-            return str;
+                for (int i = 0; i < data.Length; i++)
+                {
+                    str[i] = data[i];
+                }
+                return str;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message.ToString());
+                return null;
+            }
         }
     }
 }
