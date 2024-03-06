@@ -246,7 +246,7 @@ namespace LeoSat_Dashboard
         {
             if (F_LiveData == null)
             {
-                F_LiveData = new Form_LiveData();
+                F_LiveData = new Form_LiveData(model);
                 F_LiveData.FormClosed += Dashboard_FormClosed;
                 F_LiveData.MdiParent = this;
                 F_LiveData.Dock = DockStyle.Fill;
@@ -286,7 +286,7 @@ namespace LeoSat_Dashboard
         {
             if (F_Statistics == null)
             {
-                F_Statistics = new Form_Statistics();
+                F_Statistics = new Form_Statistics(model);
                 F_Statistics.FormClosed += FStatistics_FormClosed;
                 F_Statistics.MdiParent = this;
                 F_Statistics.Dock = DockStyle.Fill;
