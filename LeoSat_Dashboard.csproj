@@ -163,6 +163,10 @@
     <Content Include="Images\Icon_connected.png" />
     <Content Include="Images\Icon_disconnected.png" />
     <Content Include="Images\Microcontroller.png" />
+    <None Include="Resources\icons8-menu-500.png" />
+    <None Include="Resources\icon_bt_disconnect.png" />
+    <None Include="Resources\Icon_bt_connect.png" />
+    <None Include="Resources\Microcontroller.png" />
     <None Include="Resources\kisspng-hamburger-button-computer-icons-menu-5afa4b5d99b094.90076586152635273362951.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -31,20 +31,20 @@ namespace LeoSat_Dashboard
         {
             this.components = new System.ComponentModel.Container();
             this.menuContainer = new System.Windows.Forms.FlowLayoutPanel();
-            this.bt_Menu = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.cb_PortSelect = new System.Windows.Forms.ComboBox();
-            this.bt_Connect = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.bt_LiveData = new System.Windows.Forms.Button();
             this.bt_Statistics = new System.Windows.Forms.Button();
             this.bt_GPS = new System.Windows.Forms.Button();
             this.menuTransistion = new System.Windows.Forms.Timer(this.components);
+            this.bt_Menu = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.bt_Connect = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.menuContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bt_Menu)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bt_Menu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,19 +64,6 @@ namespace LeoSat_Dashboard
             this.menuContainer.TabIndex = 6;
             this.menuContainer.UseWaitCursor = true;
             // 
-            // bt_Menu
-            // 
-            this.bt_Menu.Image = global::Anbindung_mit_Mikrocontroller.Properties.Resources.kisspng_hamburger_button_computer_icons_menu_5afa4b5d99b094_9007658615263527336295;
-            this.bt_Menu.Location = new System.Drawing.Point(15, 15);
-            this.bt_Menu.Margin = new System.Windows.Forms.Padding(15, 15, 3, 3);
-            this.bt_Menu.Name = "bt_Menu";
-            this.bt_Menu.Size = new System.Drawing.Size(30, 30);
-            this.bt_Menu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.bt_Menu.TabIndex = 4;
-            this.bt_Menu.TabStop = false;
-            this.bt_Menu.UseWaitCursor = true;
-            this.bt_Menu.Click += new System.EventHandler(this.bt_Menu_Click);
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.pictureBox2);
@@ -89,18 +76,6 @@ namespace LeoSat_Dashboard
             this.flowLayoutPanel1.TabIndex = 14;
             this.flowLayoutPanel1.UseWaitCursor = true;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(48)))));
-            this.pictureBox2.Location = new System.Drawing.Point(15, 25);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(15, 25, 3, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox2.TabIndex = 7;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.UseWaitCursor = true;
-            // 
             // cb_PortSelect
             // 
             this.cb_PortSelect.FormattingEnabled = true;
@@ -110,31 +85,6 @@ namespace LeoSat_Dashboard
             this.cb_PortSelect.Size = new System.Drawing.Size(120, 21);
             this.cb_PortSelect.TabIndex = 0;
             this.cb_PortSelect.UseWaitCursor = true;
-            // 
-            // bt_Connect
-            // 
-            this.bt_Connect.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bt_Connect.Location = new System.Drawing.Point(181, 30);
-            this.bt_Connect.Margin = new System.Windows.Forms.Padding(5, 30, 3, 3);
-            this.bt_Connect.Name = "bt_Connect";
-            this.bt_Connect.Size = new System.Drawing.Size(25, 25);
-            this.bt_Connect.TabIndex = 7;
-            this.bt_Connect.Text = "button2";
-            this.bt_Connect.UseVisualStyleBackColor = true;
-            this.bt_Connect.UseWaitCursor = true;
-            this.bt_Connect.Click += new System.EventHandler(this.bt_Connect_Click);
-            // 
-            // button3
-            // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button3.Location = new System.Drawing.Point(214, 28);
-            this.button3.Margin = new System.Windows.Forms.Padding(5, 22, 3, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(21, 21);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.UseWaitCursor = true;
             // 
             // button1
             // 
@@ -218,6 +168,60 @@ namespace LeoSat_Dashboard
             this.menuTransistion.Interval = 10;
             this.menuTransistion.Tick += new System.EventHandler(this.menuTransistion_Tick);
             // 
+            // bt_Menu
+            // 
+            this.bt_Menu.Image = global::Anbindung_mit_Mikrocontroller.Properties.Resources.icons8_menu_500;
+            this.bt_Menu.Location = new System.Drawing.Point(15, 15);
+            this.bt_Menu.Margin = new System.Windows.Forms.Padding(15, 15, 3, 3);
+            this.bt_Menu.Name = "bt_Menu";
+            this.bt_Menu.Size = new System.Drawing.Size(30, 30);
+            this.bt_Menu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.bt_Menu.TabIndex = 4;
+            this.bt_Menu.TabStop = false;
+            this.bt_Menu.UseWaitCursor = true;
+            this.bt_Menu.Click += new System.EventHandler(this.bt_Menu_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(48)))));
+            this.pictureBox2.Image = global::Anbindung_mit_Mikrocontroller.Properties.Resources.Microcontroller;
+            this.pictureBox2.Location = new System.Drawing.Point(15, 25);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(15, 25, 3, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 7;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.UseWaitCursor = true;
+            // 
+            // bt_Connect
+            // 
+            this.bt_Connect.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.bt_Connect.BackgroundImage = global::Anbindung_mit_Mikrocontroller.Properties.Resources.Icon_bt_connect;
+            this.bt_Connect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bt_Connect.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.bt_Connect.Location = new System.Drawing.Point(186, 30);
+            this.bt_Connect.Margin = new System.Windows.Forms.Padding(10, 27, 3, 3);
+            this.bt_Connect.Name = "bt_Connect";
+            this.bt_Connect.Size = new System.Drawing.Size(21, 21);
+            this.bt_Connect.TabIndex = 7;
+            this.bt_Connect.UseVisualStyleBackColor = true;
+            this.bt_Connect.Click += new System.EventHandler(this.bt_Connect_Click);
+            // 
+            // button3
+            // 
+            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button3.BackgroundImage = global::Anbindung_mit_Mikrocontroller.Properties.Resources.icon_bt_disconnect;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.button3.Location = new System.Drawing.Point(215, 30);
+            this.button3.Margin = new System.Windows.Forms.Padding(5, 27, 3, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(21, 21);
+            this.button3.TabIndex = 8;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // LeoSat_Dashboard
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -232,8 +236,8 @@ namespace LeoSat_Dashboard
             this.Text = "LeoSat | Dashboard";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bt_Menu)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bt_Menu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
