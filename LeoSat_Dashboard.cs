@@ -49,6 +49,7 @@ namespace LeoSat_Dashboard
         Form_LiveData F_LiveData;
         Form_GPS F_GPS;
         Form_Statistics F_Statistics;
+        Form_Overview F_Overview;
 
 
         public LeoSat_Dashboard()
@@ -64,10 +65,16 @@ namespace LeoSat_Dashboard
             F_Statistics.Dock = DockStyle.Fill;
 
             F_LiveData = new Form_LiveData(model);
-            F_LiveData.FormClosed += Dashboard_FormClosed;
+            F_LiveData.FormClosed += FLiveData_FormClosed;
             F_LiveData.MdiParent = this;
             F_LiveData.Dock = DockStyle.Fill;
             F_LiveData.Show();
+
+            F_Overview = new Form_Overview(model);
+            F_Overview.FormClosed += FOverview_FormClosed;
+            F_Overview.MdiParent = this;
+            F_Overview.Dock = DockStyle.Fill;
+            F_Overview.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -167,7 +174,7 @@ namespace LeoSat_Dashboard
             if (F_LiveData == null)
             {
                 F_LiveData = new Form_LiveData(model);
-                F_LiveData.FormClosed += Dashboard_FormClosed;
+                F_LiveData.FormClosed += FLiveData_FormClosed;
                 F_LiveData.MdiParent = this;
                 F_LiveData.Dock = DockStyle.Fill;
                 F_LiveData.Show();
@@ -177,7 +184,7 @@ namespace LeoSat_Dashboard
                 F_LiveData.Activate();
             }
         }
-        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        private void FLiveData_FormClosed(object sender, FormClosedEventArgs e)
         {
             F_LiveData = null;
         }
@@ -269,6 +276,27 @@ namespace LeoSat_Dashboard
             {
 
             }
+        }
+
+        private void bt_Overview_Click(object sender, EventArgs e)
+        {
+            if (F_Overview == null)
+            {
+                F_Overview = new Form_Overview(model);
+                F_Overview.FormClosed += FOverview_FormClosed;
+                F_Overview.MdiParent = this;
+                F_Overview.Dock = DockStyle.Fill;
+                F_Overview.Show();
+            }
+            else
+            {
+                F_Overview.Activate();
+                F_Overview.Show();
+            }
+        }
+        private void FOverview_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            F_Overview = null;
         }
     }
 }

@@ -150,7 +150,7 @@ namespace LeoSat_Dashboard
             this.bt_Overview.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.bt_Overview.ForeColor = System.Drawing.Color.White;
             this.bt_Overview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_Overview.ImageIndex = 2;
+            this.bt_Overview.ImageIndex = 1;
             this.bt_Overview.ImageList = this.button_icons;
             this.bt_Overview.Location = new System.Drawing.Point(3, 164);
             this.bt_Overview.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
@@ -162,15 +162,16 @@ namespace LeoSat_Dashboard
             this.bt_Overview.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bt_Overview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.bt_Overview.UseVisualStyleBackColor = false;
+            this.bt_Overview.Click += new System.EventHandler(this.bt_Overview_Click);
             // 
             // button_icons
             // 
             this.button_icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("button_icons.ImageStream")));
             this.button_icons.TransparentColor = System.Drawing.Color.Transparent;
-            this.button_icons.Images.SetKeyName(0, "icon_statistics.drawio.png");
-            this.button_icons.Images.SetKeyName(1, "icon_liveData.drawio.png");
-            this.button_icons.Images.SetKeyName(2, "icon_overview.drawio.png");
-            this.button_icons.Images.SetKeyName(3, "icon_gps.drawio.png");
+            this.button_icons.Images.SetKeyName(0, "icon_liveData.drawio.png");
+            this.button_icons.Images.SetKeyName(1, "icon_overview.drawio.png");
+            this.button_icons.Images.SetKeyName(2, "icon_gps.drawio.png");
+            this.button_icons.Images.SetKeyName(3, "icon_statistics.drawio.png");
             // 
             // bt_LiveData
             // 
@@ -181,7 +182,7 @@ namespace LeoSat_Dashboard
             this.bt_LiveData.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.bt_LiveData.ForeColor = System.Drawing.Color.White;
             this.bt_LiveData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_LiveData.ImageIndex = 1;
+            this.bt_LiveData.ImageIndex = 0;
             this.bt_LiveData.ImageList = this.button_icons;
             this.bt_LiveData.Location = new System.Drawing.Point(3, 257);
             this.bt_LiveData.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
@@ -204,7 +205,7 @@ namespace LeoSat_Dashboard
             this.bt_Statistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.bt_Statistics.ForeColor = System.Drawing.Color.White;
             this.bt_Statistics.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_Statistics.ImageIndex = 0;
+            this.bt_Statistics.ImageIndex = 3;
             this.bt_Statistics.ImageList = this.button_icons;
             this.bt_Statistics.Location = new System.Drawing.Point(3, 350);
             this.bt_Statistics.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
@@ -227,7 +228,7 @@ namespace LeoSat_Dashboard
             this.bt_GPS.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.bt_GPS.ForeColor = System.Drawing.Color.White;
             this.bt_GPS.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_GPS.ImageIndex = 3;
+            this.bt_GPS.ImageIndex = 2;
             this.bt_GPS.ImageList = this.button_icons;
             this.bt_GPS.Location = new System.Drawing.Point(3, 443);
             this.bt_GPS.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
