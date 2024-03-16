@@ -12,6 +12,7 @@ using System.Timers;
 using GMap.NET.MapProviders;
 using GMap.NET;
 using Anbindung_mit_Mikrocontroller;
+using Anbindung_mit_Mikrocontroller.Properties;
 
 namespace LeoSat_Dashboard
 {
@@ -113,37 +114,18 @@ namespace LeoSat_Dashboard
         // ----------------------------------------------------------------------------------------------------------
         // Event handling
         // ----------------------------------------------------------------------------------------------------------
-        private void bt_Disconnect_Click(object sender, EventArgs e)
+        private void SerialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             try
             {
-                _serialPort.Close();
-                _connected = false;
-                bt_Connect.Enabled = true;
-
-                /*lb_Connected.Text = "Disconnected";
-                pb_IconConnectionStatus.Image = Image.FromFile(@ImagePath + "Icon_disconnected" + ".png");
-
-                lb_Temperature.Text = "-" + "°C";
-                lb_Pressure.Text = "-" + "°C";
-                lb_Humidity.Text = "-" + "°C";
-                lb_time.Text = "-" + "°C";*/
-
-                //chart_temperautre_statistik.Series[0].Points.Clear();
+                _receivedData = _serialPort.ReadLine();
+                model.DataReceived(_receivedData);
             }
-            catch (System.InvalidOperationException)
+            catch(Exception ex) 
             {
-
+                Console.WriteLine(ex.Message);
             }
-            catch (System.NullReferenceException)
-            {
-
-            }
-        }
-        private void SerialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
-        {
-           _receivedData = _serialPort.ReadLine();
-            model.DataReceived(_receivedData);
+           
         }
 
         public void OnNext(Dashboard data)
@@ -263,15 +245,29 @@ namespace LeoSat_Dashboard
                 _serialPort.Open();
                 Console.WriteLine("Connected to Port {0}", _serialPort.PortName);
 
-                //pb_IconConnectionStatus.Image = Image.FromFile(@ImagePath + "Icon_connected" + ".png");
-                //lb_Connected.Text = "Connected";
-
-                _connected = true;
-                bt_Connect.Enabled = false;
+                pb_MicrocontrollerConnection.Image = Resources.icon_microcontroller_connected;
             }
             catch
             {
                 Console.WriteLine("Port not available");
+            }
+        }
+
+        private void bt_Disconnect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _serialPort.Close();
+
+                pb_MicrocontrollerConnection.Image = Resources.icon_microcontroller_disconnected_drawio;
+            }
+            catch (System.InvalidOperationException)
+            {
+
+            }
+            catch (System.NullReferenceException)
+            {
+
             }
         }
     }

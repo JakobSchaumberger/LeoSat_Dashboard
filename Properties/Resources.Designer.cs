@@ -93,39 +93,9 @@ namespace Anbindung_mit_Mikrocontroller.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_menu1 {
+        internal static System.Drawing.Bitmap icon_microcontroller_connected {
             get {
-                object obj = ResourceManager.GetObject("icon_menu1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icon_microcontroller_connected_drawio {
-            get {
-                object obj = ResourceManager.GetObject("icon_microcontroller_connected.drawio", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icon_microcontroller_connected1 {
-            get {
-                object obj = ResourceManager.GetObject("icon_microcontroller_connected1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icon_microcontroller_connected2 {
-            get {
-                object obj = ResourceManager.GetObject("icon_microcontroller_connected2", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_microcontroller_connected", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -136,37 +106,6 @@ namespace Anbindung_mit_Mikrocontroller.Properties {
         internal static System.Drawing.Bitmap icon_microcontroller_disconnected_drawio {
             get {
                 object obj = ResourceManager.GetObject("icon_microcontroller_disconnected.drawio", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_menu_500 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-menu-500", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap kisspng_hamburger_button_computer_icons_menu_5afa4b5d99b094_9007658615263527336295 {
-            get {
-                object obj = ResourceManager.GetObject("kisspng-hamburger-button-computer-icons-menu-5afa4b5d99b094.900765861526352733629" +
-                        "5", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Microcontroller {
-            get {
-                object obj = ResourceManager.GetObject("Microcontroller", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

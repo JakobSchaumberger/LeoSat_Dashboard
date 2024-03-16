@@ -135,19 +135,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -163,17 +163,11 @@
     <Content Include="Images\Icon_connected.png" />
     <Content Include="Images\Icon_disconnected.png" />
     <Content Include="Images\Microcontroller.png" />
-    <None Include="Resources\icon_menu.drawio1.png" />
+    <None Include="Resources\icon_menu.drawio.png" />
     <None Include="Resources\icon_microcontroller_disconnected.drawio.png" />
     <None Include="Resources\icon_microcontroller_connected.drawio2.png" />
-    <None Include="Resources\icon_microcontroller_connected.drawio1.png" />
-    <None Include="Resources\icon_microcontroller_connected.drawio.png" />
-    <None Include="Resources\icon_menu.drawio.png" />
-    <None Include="Resources\icons8-menu-500.png" />
     <None Include="Resources\icon_bt_disconnect.png" />
     <None Include="Resources\Icon_bt_connect.png" />
-    <None Include="Resources\Microcontroller.png" />
-    <None Include="Resources\kisspng-hamburger-button-computer-icons-menu-5afa4b5d99b094.90076586152635273362951.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

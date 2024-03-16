@@ -32,23 +32,23 @@ namespace LeoSat_Dashboard
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LeoSat_Dashboard));
             this.menuContainer = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.cb_PortSelect = new System.Windows.Forms.ComboBox();
-            this.menuTransistion = new System.Windows.Forms.Timer(this.components);
-            this.button_icons = new System.Windows.Forms.ImageList(this.components);
-            this.icon_Micorcontroller = new System.Windows.Forms.ImageList(this.components);
             this.bt_Menu = new System.Windows.Forms.PictureBox();
-            this.pb_Microcontroller = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pb_MicrocontrollerConnection = new System.Windows.Forms.PictureBox();
+            this.cb_PortSelect = new System.Windows.Forms.ComboBox();
             this.bt_Connect = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.bt_Disconnect = new System.Windows.Forms.Button();
             this.bt_Overview = new System.Windows.Forms.Button();
+            this.button_icons = new System.Windows.Forms.ImageList(this.components);
             this.bt_LiveData = new System.Windows.Forms.Button();
             this.bt_Statistics = new System.Windows.Forms.Button();
             this.bt_GPS = new System.Windows.Forms.Button();
+            this.menuTransistion = new System.Windows.Forms.Timer(this.components);
+            this.icon_Micorcontroller = new System.Windows.Forms.ImageList(this.components);
             this.menuContainer.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bt_Menu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Microcontroller)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_MicrocontrollerConnection)).BeginInit();
             this.SuspendLayout();
             // 
             // menuContainer
@@ -66,16 +66,42 @@ namespace LeoSat_Dashboard
             this.menuContainer.Size = new System.Drawing.Size(250, 585);
             this.menuContainer.TabIndex = 6;
             // 
+            // bt_Menu
+            // 
+            this.bt_Menu.Image = ((System.Drawing.Image)(resources.GetObject("bt_Menu.Image")));
+            this.bt_Menu.Location = new System.Drawing.Point(20, 15);
+            this.bt_Menu.Margin = new System.Windows.Forms.Padding(20, 15, 3, 3);
+            this.bt_Menu.Name = "bt_Menu";
+            this.bt_Menu.Size = new System.Drawing.Size(30, 30);
+            this.bt_Menu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.bt_Menu.TabIndex = 4;
+            this.bt_Menu.TabStop = false;
+            this.bt_Menu.Click += new System.EventHandler(this.bt_Menu_Click);
+            // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.pb_Microcontroller);
+            this.flowLayoutPanel1.Controls.Add(this.pb_MicrocontrollerConnection);
             this.flowLayoutPanel1.Controls.Add(this.cb_PortSelect);
             this.flowLayoutPanel1.Controls.Add(this.bt_Connect);
-            this.flowLayoutPanel1.Controls.Add(this.button3);
+            this.flowLayoutPanel1.Controls.Add(this.bt_Disconnect);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 51);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(286, 80);
             this.flowLayoutPanel1.TabIndex = 14;
+            // 
+            // pb_MicrocontrollerConnection
+            // 
+            this.pb_MicrocontrollerConnection.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pb_MicrocontrollerConnection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(48)))));
+            this.pb_MicrocontrollerConnection.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.pb_MicrocontrollerConnection.Image = ((System.Drawing.Image)(resources.GetObject("pb_MicrocontrollerConnection.Image")));
+            this.pb_MicrocontrollerConnection.Location = new System.Drawing.Point(17, 26);
+            this.pb_MicrocontrollerConnection.Margin = new System.Windows.Forms.Padding(17, 25, 3, 3);
+            this.pb_MicrocontrollerConnection.Name = "pb_MicrocontrollerConnection";
+            this.pb_MicrocontrollerConnection.Size = new System.Drawing.Size(30, 30);
+            this.pb_MicrocontrollerConnection.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pb_MicrocontrollerConnection.TabIndex = 7;
+            this.pb_MicrocontrollerConnection.TabStop = false;
             // 
             // cb_PortSelect
             // 
@@ -86,53 +112,6 @@ namespace LeoSat_Dashboard
             this.cb_PortSelect.Name = "cb_PortSelect";
             this.cb_PortSelect.Size = new System.Drawing.Size(100, 28);
             this.cb_PortSelect.TabIndex = 0;
-            // 
-            // menuTransistion
-            // 
-            this.menuTransistion.Enabled = true;
-            this.menuTransistion.Interval = 10;
-            this.menuTransistion.Tick += new System.EventHandler(this.menuTransistion_Tick);
-            // 
-            // button_icons
-            // 
-            this.button_icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("button_icons.ImageStream")));
-            this.button_icons.TransparentColor = System.Drawing.Color.Transparent;
-            this.button_icons.Images.SetKeyName(0, "icon_statistics.drawio.png");
-            this.button_icons.Images.SetKeyName(1, "icon_liveData.drawio.png");
-            this.button_icons.Images.SetKeyName(2, "icon_overview.drawio.png");
-            this.button_icons.Images.SetKeyName(3, "icon_gps.drawio.png");
-            // 
-            // icon_Micorcontroller
-            // 
-            this.icon_Micorcontroller.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.icon_Micorcontroller.ImageSize = new System.Drawing.Size(16, 16);
-            this.icon_Micorcontroller.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // bt_Menu
-            // 
-            this.bt_Menu.Image = global::Anbindung_mit_Mikrocontroller.Properties.Resources.icon_menu1;
-            this.bt_Menu.Location = new System.Drawing.Point(20, 15);
-            this.bt_Menu.Margin = new System.Windows.Forms.Padding(20, 15, 3, 3);
-            this.bt_Menu.Name = "bt_Menu";
-            this.bt_Menu.Size = new System.Drawing.Size(30, 30);
-            this.bt_Menu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.bt_Menu.TabIndex = 4;
-            this.bt_Menu.TabStop = false;
-            this.bt_Menu.Click += new System.EventHandler(this.bt_Menu_Click);
-            // 
-            // pb_Microcontroller
-            // 
-            this.pb_Microcontroller.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pb_Microcontroller.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(48)))));
-            this.pb_Microcontroller.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pb_Microcontroller.Image = global::Anbindung_mit_Mikrocontroller.Properties.Resources.icon_microcontroller_disconnected_drawio;
-            this.pb_Microcontroller.Location = new System.Drawing.Point(17, 26);
-            this.pb_Microcontroller.Margin = new System.Windows.Forms.Padding(17, 25, 3, 3);
-            this.pb_Microcontroller.Name = "pb_Microcontroller";
-            this.pb_Microcontroller.Size = new System.Drawing.Size(30, 30);
-            this.pb_Microcontroller.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pb_Microcontroller.TabIndex = 7;
-            this.pb_Microcontroller.TabStop = false;
             // 
             // bt_Connect
             // 
@@ -148,18 +127,19 @@ namespace LeoSat_Dashboard
             this.bt_Connect.UseVisualStyleBackColor = true;
             this.bt_Connect.Click += new System.EventHandler(this.bt_Connect_Click);
             // 
-            // button3
+            // bt_Disconnect
             // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button3.BackgroundImage = global::Anbindung_mit_Mikrocontroller.Properties.Resources.icon_bt_disconnect;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.button3.Location = new System.Drawing.Point(212, 32);
-            this.button3.Margin = new System.Windows.Forms.Padding(5, 27, 3, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(21, 21);
-            this.button3.TabIndex = 8;
-            this.button3.UseVisualStyleBackColor = true;
+            this.bt_Disconnect.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.bt_Disconnect.BackgroundImage = global::Anbindung_mit_Mikrocontroller.Properties.Resources.icon_bt_disconnect;
+            this.bt_Disconnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bt_Disconnect.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.bt_Disconnect.Location = new System.Drawing.Point(212, 32);
+            this.bt_Disconnect.Margin = new System.Windows.Forms.Padding(5, 27, 3, 3);
+            this.bt_Disconnect.Name = "bt_Disconnect";
+            this.bt_Disconnect.Size = new System.Drawing.Size(21, 21);
+            this.bt_Disconnect.TabIndex = 8;
+            this.bt_Disconnect.UseVisualStyleBackColor = true;
+            this.bt_Disconnect.Click += new System.EventHandler(this.bt_Disconnect_Click);
             // 
             // bt_Overview
             // 
@@ -182,6 +162,15 @@ namespace LeoSat_Dashboard
             this.bt_Overview.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bt_Overview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.bt_Overview.UseVisualStyleBackColor = false;
+            // 
+            // button_icons
+            // 
+            this.button_icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("button_icons.ImageStream")));
+            this.button_icons.TransparentColor = System.Drawing.Color.Transparent;
+            this.button_icons.Images.SetKeyName(0, "icon_statistics.drawio.png");
+            this.button_icons.Images.SetKeyName(1, "icon_liveData.drawio.png");
+            this.button_icons.Images.SetKeyName(2, "icon_overview.drawio.png");
+            this.button_icons.Images.SetKeyName(3, "icon_gps.drawio.png");
             // 
             // bt_LiveData
             // 
@@ -251,6 +240,18 @@ namespace LeoSat_Dashboard
             this.bt_GPS.UseVisualStyleBackColor = false;
             this.bt_GPS.Click += new System.EventHandler(this.bt_GPS_Click);
             // 
+            // menuTransistion
+            // 
+            this.menuTransistion.Enabled = true;
+            this.menuTransistion.Interval = 10;
+            this.menuTransistion.Tick += new System.EventHandler(this.menuTransistion_Tick);
+            // 
+            // icon_Micorcontroller
+            // 
+            this.icon_Micorcontroller.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.icon_Micorcontroller.ImageSize = new System.Drawing.Size(16, 16);
+            this.icon_Micorcontroller.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // LeoSat_Dashboard
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -266,9 +267,9 @@ namespace LeoSat_Dashboard
             this.Text = "LeoSat | Dashboard";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuContainer.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bt_Menu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Microcontroller)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pb_MicrocontrollerConnection)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -278,9 +279,9 @@ namespace LeoSat_Dashboard
         private System.Windows.Forms.Button bt_Overview;
         private System.Windows.Forms.Button bt_LiveData;
         private System.Windows.Forms.Timer menuTransistion;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button bt_Disconnect;
         private System.Windows.Forms.Button bt_Connect;
-        private System.Windows.Forms.PictureBox pb_Microcontroller;
+        private System.Windows.Forms.PictureBox pb_MicrocontrollerConnection;
         private System.Windows.Forms.ComboBox cb_PortSelect;
         private System.Windows.Forms.PictureBox bt_Menu;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
