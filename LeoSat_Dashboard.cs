@@ -61,6 +61,12 @@ namespace LeoSat_Dashboard
             F_Statistics.FormClosed += FGPS_FormClosed;
             F_Statistics.MdiParent = this;
             F_Statistics.Dock = DockStyle.Fill;
+
+            F_LiveData = new Form_LiveData(model);
+            F_LiveData.FormClosed += Dashboard_FormClosed;
+            F_LiveData.MdiParent = this;
+            F_LiveData.Dock = DockStyle.Fill;
+            F_LiveData.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -138,89 +144,11 @@ namespace LeoSat_Dashboard
         {
            _receivedData = _serialPort.ReadLine();
             model.DataReceived(_receivedData);
-            //Console.WriteLine(_receivedData);
-        }
-
-        private void DisplayData(Dashboard receivedData)
-        {
-            float nxAcc;
-            float nyAcc;
-            float nzAcc;
-
-            
-
-            /*foreach (string str in data) {
-                Console.Write(str);
-                Console.Write(" ");
-            }
-            Console.WriteLine();*/      
-
-            try
-            {
-                string[] data = receivedData.ToStringArray();
-
-                timeOfFLight = data[0];
-                Temp         = data[2];
-                Hum          = data[3];
-                Press        = data[4];
-                xAcc         = data[9];
-                //nxAcc      = float.Parse(xAcc);
-                yAcc         = data[10];
-                //nyAcc      = float.Parse(yAcc);
-                zAcc         = data[11];
-                //nzAcc = float.Parse(zAcc);
-
-                //double sqrtTotalAcc = Math.Sqrt(nxAcc * nyAcc * nzAcc);
-                //totalAcc = sqrtTotalAcc.ToString();
-
-                Altitude = data[12];
-                Latitude = data[13];
-                Longitude = data[14];
-
-                /*lb_Temperature.Text = Temp + "°C";
-                lb_Pressure.Text = Press + "mbar";
-                lb_Humidity.Text = Hum;
-                lb_Altitude.Text = Altitude + "m";
-                lb_Acceleration.Text = 0 + "m/s^2";
-                lb_time.Text = timeOfFLight;*/
-
-                //chart_temperautre_statistik.Series[0].Points.AddXY(DateTime.Now.ToString("h:mm:ss tt"), Temp);
-            }
-            catch (System.NullReferenceException)
-            {
-                Console.WriteLine("NullReferenceException");
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-
-            try
-            {
-                nLat = Convert.ToDouble(Latitude, new System.Globalization.CultureInfo("en-US"));
-                nLong = Convert.ToDouble(Longitude, new System.Globalization.CultureInfo("en-US"));
-
-                //gMapControl1.Position = new PointLatLng(nLat, nLong);
-            }
-            catch(System.OverflowException)
-            {
-                Console.WriteLine("NaN Error");
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            //if (_connected && _receivedData != "") DisplayData();       
         }
 
         public void OnNext(Dashboard data)
         {
-            DisplayData(data);
-            //Refresh();
+            // 0
         }
 
         bool menuExpand = false;

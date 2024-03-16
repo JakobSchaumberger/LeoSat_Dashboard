@@ -26,6 +26,8 @@ namespace LeoSat_Dashboard
         {
             ProcessData(receivedData);
             SaveData(receivedData);
+
+            Console.WriteLine(receivedData);
         }
         private void ProcessData(string receivedData)
         {
@@ -59,8 +61,14 @@ namespace LeoSat_Dashboard
             }
             catch(Exception e)
             {
+                string[] str = new string[20];
+
+                for (int i = 0; i < data.Length; i++)
+                {
+                    str[i] = "0";
+                }
                 Console.WriteLine(e.Message.ToString());
-                return null;
+                return str;
             }
         }
     }
