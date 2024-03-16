@@ -157,7 +157,7 @@ namespace LeoSat_Dashboard
             if(menuExpand)
             {
                 menuContainer.Width -= 10;
-                if (menuContainer.Width <= 60)
+                if (menuContainer.Width <= 70)
                 {
                     menuExpand = false;
                     menuTransistion.Stop();

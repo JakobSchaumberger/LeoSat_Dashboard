@@ -163,6 +163,12 @@
     <Content Include="Images\Icon_connected.png" />
     <Content Include="Images\Icon_disconnected.png" />
     <Content Include="Images\Microcontroller.png" />
+    <None Include="Resources\icon_menu.drawio1.png" />
+    <None Include="Resources\icon_microcontroller_disconnected.drawio.png" />
+    <None Include="Resources\icon_microcontroller_connected.drawio2.png" />
+    <None Include="Resources\icon_microcontroller_connected.drawio1.png" />
+    <None Include="Resources\icon_microcontroller_connected.drawio.png" />
+    <None Include="Resources\icon_menu.drawio.png" />
     <None Include="Resources\icons8-menu-500.png" />
     <None Include="Resources\icon_bt_disconnect.png" />
     <None Include="Resources\Icon_bt_connect.png" />
