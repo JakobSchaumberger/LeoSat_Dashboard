@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace LeoSat_Dashboard
 {
-    public partial class Form_Statistics : Form, IObserver<Dashboard>
+    public partial class Form_Statistics : Form, IObserver<SerialData>
     {
         private Model model;
         private IDisposable unsubscriber;
@@ -33,36 +33,30 @@ namespace LeoSat_Dashboard
         {
             this.ControlBox = false;
         }
-        public void OnNext(Dashboard recaivedData)
+        public void OnNext(SerialData recaivedData)
         {
             try
             {
                 string[] data = recaivedData.ToStringArray();
 
                 timeOfFLight = data[0];
-                Temp = data[2];
-                Hum = data[3];
-                Press = data[4];
-                xAcc = data[9];
-                yAcc = data[10];
-                zAcc = data[11];
-                Altitude = data[12];
-
-                // ---Calculation of total Acceleration
-                //nxAcc      = float.Parse(xAcc);
-                //nyAcc      = float.Parse(yAcc);
-                //nzAcc = float.Parse(zAcc);
-
-                //double sqrtTotalAcc = Math.Sqrt(nxAcc * nyAcc * nzAcc);
-                //totalAcc = sqrtTotalAcc.ToString();
-                totalAcc = "0";
+                Temp         = data[2];
+                Hum          = data[3];
+                Press        = data[4];
+                xAcc         = data[9];
+                yAcc         = data[10];
+                zAcc         = data[11];
+                Altitude     = data[12];
 
                 this.Invoke((MethodInvoker)delegate
                 {
-                    Chart_Temperature.Series[0].Points.AddXY(timeOfFLight, Temp);
-                    Chart_Altitude.Series[0].Points.AddXY(timeOfFLight, Altitude);
+                    Chart_Temperature.Series[0].Points.AddXY(timeOfFLight, 
+                        Temp);
+                    Chart_Altitude.Series[0].Points.AddXY(timeOfFLight, 
+                        Altitude);
                     Chart_Pressure.Series[0].Points.AddXY(timeOfFLight, Press);
-                    Chart_Acceleration.Series[0].Points.AddXY(timeOfFLight, totalAcc);
+                    Chart_Acceleration.Series[0].Points.AddXY(timeOfFLight, 
+                        zAcc);
                     Chart_Humidity.Series[0].Points.AddXY(timeOfFLight, Hum);
                     Refresh();
                 });

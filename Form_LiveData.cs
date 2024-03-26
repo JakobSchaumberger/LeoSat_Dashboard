@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace LeoSat_Dashboard
 {   
-    public partial class Form_LiveData : Form, IObserver<Dashboard>
+    public partial class Form_LiveData : Form, IObserver<SerialData>
     {
         private Model model;
         private IDisposable unsubscriber;
@@ -35,7 +35,7 @@ namespace LeoSat_Dashboard
         {
             this.ControlBox = false;
         }
-        public void OnNext(Dashboard recaivedData)
+        public void OnNext(SerialData recaivedData)
         {
             try
             {
@@ -50,14 +50,6 @@ namespace LeoSat_Dashboard
                 zAcc         = data[11];
                 Altitude     = data[12];
 
-                // ---Calculation of total Acceleration
-                //nxAcc      = float.Parse(xAcc);
-                //nyAcc      = float.Parse(yAcc);
-                //nzAcc = float.Parse(zAcc);
-
-                //double sqrtTotalAcc = Math.Sqrt(nxAcc * nyAcc * nzAcc);
-                //totalAcc = sqrtTotalAcc.ToString();
-
                 this.Invoke((MethodInvoker)delegate
                 {
                     lb_Time.Text = timeOfFLight;
@@ -65,7 +57,7 @@ namespace LeoSat_Dashboard
                     lb_Pressure.Text = Press;
                     lb_Humidity.Text = Hum;
                     lb_Altitude.Text = Altitude;
-                    lb_Acceleration.Text = "0";
+                    lb_Acceleration.Text = yAcc;
 
                     lb_Time.Text = timeOfFLight;
 

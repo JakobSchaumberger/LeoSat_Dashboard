@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LeoSat_Dashboard
 {
-    public class Dashboard
+    public class SerialData
     {
         private string[] data = null;            //Verweis auf zukünftiges Feld
         static SerialPort serialPort;
@@ -22,7 +22,7 @@ namespace LeoSat_Dashboard
 
         }
 
-        public Dashboard(string receivedData)                   //Konstruktor
+        public SerialData(string receivedData)                   //Konstruktor
         {
             ProcessData(receivedData);
             SaveData(receivedData);

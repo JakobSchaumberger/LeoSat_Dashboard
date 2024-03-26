@@ -13,7 +13,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace LeoSat_Dashboard
 {
-    public partial class Form_GPS : Form, IObserver<Dashboard>
+    public partial class Form_GPS : Form, IObserver<SerialData>
     {
         private Model model;
         private IDisposable unsubscriber;
@@ -52,7 +52,7 @@ namespace LeoSat_Dashboard
             //set zoom
             gMapControl1.Zoom = 10;
         }
-        public void OnNext(Dashboard recaivedData)
+        public void OnNext(SerialData recaivedData)
         {
             try
             {

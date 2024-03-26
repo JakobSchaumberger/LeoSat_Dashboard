@@ -93,7 +93,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dashboard.cs" />
+    <Compile Include="SerialData.cs" />
     <Compile Include="Form_GPS.cs">
       <SubType>Form</SubType>
     </Compile>

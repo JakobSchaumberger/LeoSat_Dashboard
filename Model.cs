@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace LeoSat_Dashboard
 {
-    public class Model : IObservable<Dashboard>
+    public class Model : IObservable<SerialData>
     {
-        private Dashboard Data = null;  //hält die aktuellen Dashboard bereit
+        private SerialData Data = null;  //hält die aktuellen SerialData bereit
 
-        private List<IObserver<Dashboard>> observers = null; //wird die Liste der zu benachrichtigenden Observer
+        private List<IObserver<SerialData>> observers = null; //wird die Liste der zu benachrichtigenden Observer
 
         public Model()
         {
-            observers = new List<IObserver<Dashboard>>();    //Erzeugen einer leeren Liste
+            observers = new List<IObserver<SerialData>>();    //Erzeugen einer leeren Liste
         }
 
         public void DataReceived(string receivedData)
         {
-            Data = new Dashboard(receivedData);                 //neue Zahlen generieren
+            Data = new SerialData(receivedData);                 //neue Zahlen generieren
 
-            foreach (IObserver<Dashboard> observer in observers)
+            foreach (IObserver<SerialData> observer in observers)
                 observer.OnNext(Data);
         }
         //ab hier IObservable
-        public IDisposable Subscribe(IObserver<Dashboard> observer)
+        public IDisposable Subscribe(IObserver<SerialData> observer)
         {
             if (!observers.Contains(observer))
                 observers.Add(observer);
@@ -35,10 +35,10 @@ namespace LeoSat_Dashboard
 
         private class Unsubscriber : IDisposable
         {
-            private List<IObserver<Dashboard>> _observers;
-            private IObserver<Dashboard> _observer;
+            private List<IObserver<SerialData>> _observers;
+            private IObserver<SerialData> _observer;
 
-            public Unsubscriber(List<IObserver<Dashboard>> observers, IObserver<Dashboard> observer)
+            public Unsubscriber(List<IObserver<SerialData>> observers, IObserver<SerialData> observer)
             {
                 this._observers = observers;
                 this._observer = observer;

@@ -16,11 +16,11 @@ using Anbindung_mit_Mikrocontroller.Properties;
 
 namespace LeoSat_Dashboard
 {
-    public partial class LeoSat_Dashboard : Form, IObserver<Dashboard>
+    public partial class LeoSat_Dashboard : Form, IObserver<SerialData>
     {
         private Model model;
         private IDisposable unsubscriber;
-        private Dashboard Data;
+        private SerialData Data;
 
         static SerialPort _serialPort;
 
@@ -87,26 +87,7 @@ namespace LeoSat_Dashboard
         // -----------------------------------------------------------------------------------------------------------
         // Initialize Form-Elements
         // -----------------------------------------------------------------------------------------------------------
-        private void InitializeForm()
-        {
-            int _screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
-            int _screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
 
-            Size = new Size(_screenWidth, _screenHeight);
-            Paint += new PaintEventHandler(PaintForm);       
-        }
-        private void PaintForm(object sender, PaintEventArgs e)
-        {
-            System.Drawing.Drawing2D.LinearGradientBrush linGrBrush = new System.Drawing.Drawing2D.LinearGradientBrush(
-            new Point(0, 0),
-            new Point(1920, 1080),
-            _colors[0],        // (0,  4,  40)
-            _colors[1]);       // (0, 78, 146)
-
-            Pen pen = new Pen(linGrBrush, 50000);
-
-            e.Graphics.DrawLine(pen, 0, 0, 1920, 1080);
-        }
         private void InitializeSerialPort()
         {
             _serialPort = new SerialPort();
@@ -135,7 +116,7 @@ namespace LeoSat_Dashboard
            
         }
 
-        public void OnNext(Dashboard data)
+        public void OnNext(SerialData data)
         {
             // 0
         }

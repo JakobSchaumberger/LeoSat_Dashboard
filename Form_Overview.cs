@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace LeoSat_Dashboard
 {
-    public partial class Form_Overview : Form, IObserver<Dashboard>
+    public partial class Form_Overview : Form, IObserver<SerialData>
     {
         private Model model;
         private IDisposable unsubscriber;
@@ -37,7 +37,7 @@ namespace LeoSat_Dashboard
             throw new NotImplementedException();
         }
 
-        public void OnNext(Dashboard value)
+        public void OnNext(SerialData value)
         {
             throw new NotImplementedException();
         }
