@@ -31,20 +31,35 @@ namespace LeoSat_Dashboard
         }
         private void ProcessData(string receivedData)
         {
+            try
+            {
+                receivedData = receivedData.Replace("'", "");
+                receivedData = receivedData.Replace("[", "");
+                receivedData = receivedData.Replace("NaN", "0");
 
-            receivedData = receivedData.Replace("'", "");
-            receivedData = receivedData.Replace("[", "");
-            receivedData = receivedData.Replace("NaN", "0");
-
-            data = receivedData.Split(',');
+                data = receivedData.Split(',');
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Data did not the specification" + ex.Message.ToString());
+            }     
         }
         private void SaveData(string receivedData)
         {
-            string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            using (StreamWriter writer = new StreamWriter(@FilePath + "\\SensorData.txt", append:true))
+            try
             {
-                writer.WriteLine(receivedData);
+                string FilePath = Environment.GetFolderPath
+                (Environment.SpecialFolder.Desktop);
+                using (StreamWriter writer = new StreamWriter
+                    (@FilePath + "\\SensorData.txt", append: true))
+                {
+                    writer.WriteLine(receivedData);
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could not save Data." + ex.Message.ToString());
+            }         
         }
 
         public string[] ToStringArray()
@@ -59,7 +74,7 @@ namespace LeoSat_Dashboard
                 }
                 return str;
             }
-            catch(Exception e)
+            catch(Exception ex)
             {
                 string[] str = new string[20];
 
@@ -67,7 +82,7 @@ namespace LeoSat_Dashboard
                 {
                     str[i] = "0";
                 }
-                Console.WriteLine(e.Message.ToString());
+                Console.WriteLine(ex.Message.ToString());
                 return str;
             }
         }
